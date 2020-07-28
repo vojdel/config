@@ -37,6 +37,17 @@ Plug 'leafgarland/typescript-vim'
 " Libs Javascript Support
 Plug 'othree/javascript-libraries-syntax.vim'
 
+" Emmet
+Plug 'mattn/emmet-vim'
+
+" Icons
+Plug 'ryanoasis/vim-devicons'
+
+" Nerd Tree
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin' " NERDTree Git
+Plug 'jistr/vim-nerdtree-tabs'
+
 " Initialize plugin system
 call plug#end()
 
@@ -64,12 +75,41 @@ noremap <leader>nn :tabnew<cr>
 nnoremap <c-s> :w<CR>
 inoremap <c-s> <c-o>:w<CR>
 
+" Exit files
+nnoremap <c-w> :q!<cr>
+inoremap <c-w> :q!<cr>
+
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 :imap ii <Esc>
+
+" Emmet Configure
+let g:user_emmet_mode='n'    "only enable normal mode functions.
+let g:user_emmet_mode='inv'  "enable all functions, which is equal to
+let g:user_emmet_mode='a'    "enable all function in all mode.
+
+" Need Tree Configure
+autocmd vimenter * NERDTree
+
+let mapleader = "<"
+noremap <leader>< :NERDTreeToggle<CR>
+
+let g:NERDTreeGitStatusUseNerdFonts = 1 " you should install nerdfonts by yourself. default: 0
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Dirty"     : "✗",
+    \ "Ignored"   : "☒",
+    \ }
+
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 
 " Security
 set modelines=0
