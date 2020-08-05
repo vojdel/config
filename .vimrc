@@ -4,52 +4,10 @@ set nocompatible
 " Helps force plugins to load correctly when it is turned back on below
 filetype off
 
-" TODO: Load plugins here (pathogen or vundle)
-
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -flo ~.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-" Specify a directory for plugins
-" - For Neovim: stdpath('data') . '/plugged'
-" - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.vim/plugged')
-
-" Make sure you use single quotes
-
-" Use release branch (recommend)
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" Use Search Files
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-" Modifica la Barra
-Plug 'vim-airline/vim-airline'
-" Modifica lo Visual
-Plug 'vim-airline/vim-airline-themes'
-
-" Javascript Support
-Plug 'pangloss/vim-javascript'
-" Typescript Support
-Plug 'leafgarland/typescript-vim'
-" Libs Javascript Support
-Plug 'othree/javascript-libraries-syntax.vim'
-
-" Emmet
-Plug 'mattn/emmet-vim'
-
-" Icons
-Plug 'ryanoasis/vim-devicons'
-
-" Nerd Tree
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin' " NERDTree Git
-Plug 'jistr/vim-nerdtree-tabs'
-
-" Initialize plugin system
-call plug#end()
+"-- EXTERNAL CONFIGS --
+source ~/.vim/plugins.vim
+source ~/.vim/config/autoclose.vim 
+source ~/.vim/maps.vim
 
 let g:airline#extensions#tabline#enabled = 1
 
@@ -57,34 +15,13 @@ let g:used_javascript_libs = 'vue'
 
 let g:airline_powerline_fonts = 1
 
-let g:coc_global_extensions = [ 'coc-tsserver' ]
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-clangd' ]
 
 " Turn on syntax highlighting
 syntax on
 
 " For plugins to load correctly
 filetype plugin indent on
-
-" TODO: Pick a leader key
-let mapleader = ","
-noremap <leader>gs :CocSearch
-noremap <leader>fs :Files<cr>
-noremap <leader>nn :tabnew<cr>
-
-" Save files
-nnoremap <c-s> :w<CR>
-inoremap <c-s> <c-o>:w<CR>
-
-" Exit files
-nnoremap <c-w> :q!<cr>
-inoremap <c-w> :q!<cr>
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-:imap ii <Esc>
 
 " Emmet Configure
 let g:user_emmet_mode='n'    "only enable normal mode functions.
@@ -93,9 +30,6 @@ let g:user_emmet_mode='a'    "enable all function in all mode.
 
 " Need Tree Configure
 autocmd vimenter * NERDTree
-
-let mapleader = "<"
-noremap <leader>< :NERDTreeToggle<CR>
 
 let g:NERDTreeGitStatusUseNerdFonts = 1 " you should install nerdfonts by yourself. default: 0
 let g:NERDTreeGitStatusIndicatorMapCustom = {
@@ -110,6 +44,9 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+
+" Store info from no more than 100 files at a time, 9999 lines of text, 100kb of data. Useful for copying large amounts of data between files.
+set viminfo='100,<9999,s100
 
 " Security
 set modelines=0
@@ -130,7 +67,7 @@ set encoding=utf-8
 set wrap
 set textwidth=79
 set formatoptions=tcqrn1
-set tabstop=2
+set tabstop=4
 set shiftwidth=2
 set softtabstop=2
 set expandtab
@@ -141,10 +78,6 @@ set scrolloff=3
 set backspace=indent,eol,start
 set matchpairs+=<:> " use % to jump between pairs
 runtime! macros/matchit.vim
-
-" Move up/down editor lines
-nnoremap j gj
-nnoremap k gk
 
 " Allow hidden buffers
 set hidden
