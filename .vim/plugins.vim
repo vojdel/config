@@ -32,7 +32,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 
 " Emmet
-Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim', { 'for': 'html' }
 
 " Icons
 Plug 'ryanoasis/vim-devicons'
@@ -50,6 +50,39 @@ Plug 'godlygeek/tabular'
 
 " syntax
 Plug 'scrooloose/syntastic'
+
+" Dracula Theme
+Plug 'dracula/vim', { 'as': 'dracula' }
+
+" EasyMotion
+Plug 'easymotion/vim-easymotion'
+
+" Multi-Cursor
+Plug 'terryma/vim-multiple-cursors'
+
+" Comments
+Plug 'preservim/nerdcommenter'
+
+" Snippers
+Plug 'sirver/ultisnips'
+
+" Ident Line
+Plug 'Yggdroot/indentLine'
+
+" Edit Config
+Plug 'editorconfig/editorconfig-vim'
+
+" Navigation like Tmux - Ctrl + (h,j,k,l)
+Plug 'christoomey/vim-tmux-navigator'
+
+" Git
+if has('nvim') || has('patch-8.0.902')
+    Plug 'mhinz/vim-signify'
+else
+    Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+endif
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 " Initialize plugin system
 call plug#end()
