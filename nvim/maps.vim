@@ -1,26 +1,29 @@
-" TODO: Pick a leader key
+  " TODO: Pick a leader key
 
-let mapleader = ","
+let mapleader = " "
 noremap <leader>gs :CocSearch
 noremap <leader>fs :Files<cr>
 noremap <leader>n :tabnew 
 noremap <leader>nn :tabnew<cr>
-noremap n. <leader>cc NERDCommenterComment<cr>
+" testing
+nnoremap <Leader>t :TestNearest<CR>
+nnoremap <Leader>T :TestFile<CR>
+nnoremap <Leader>TT :TestSuite<CR>
 " NERDTree
+map <Leader>nt :NERDTreeFind<CR>
 noremap <leader><tab> :NERDTreeToggle<CR>
 noremap <S-tab> :NERDTreeToggle<CR>
 " S (Shift)
 " Clear Search
 map <leader><space> :let @/=''<cr>
 " Save files
-nnoremap <c-s> :w<CR>
+nnoremap <leader>sa :w<CR>
 inoremap <c-s> <c-o>:w<CR>
 " tabs navigation
 map <Leader>h :tabprevious<cr>
 map <Leader>l :tabnext<cr>
 " Exit files
-nnoremap <leader>q :q<cr>
-inoremap <leader>q :q<CR>
+nnoremap <leader>w :q<cr>
 
 " Show autocomplete when Tab is pressed
 inoremap <silent><expr> <Tab> coc#refresh()
@@ -40,18 +43,16 @@ nnoremap <leader>kp :let @*=expand("%")<CR>
 nnoremap j gj
 nnoremap k gk
 
+" faster scrolling
+nnoremap <silent> <C-e> 10<C-e>
+nnoremap <silent> <C-y> 10<C-y>
+
 " EasyMotion Maps
-let mapleader=" "
 nmap <leader>s <Plug>(easymotion-s2)
 
 " Seach
 nnoremap / /\v
 vnoremap / /\v
 
-" Remap help key.
-inoremap <F1> <ESC>:set invfullscreen<CR>a
-nnoremap <F1> :set invfullscreen<CR>
-vnoremap <F1> :set invfullscreen<CR>
-
-" Formatting
-map <leader>q gqip
+" Source File .vimrc
+nnoremap <leader>v :source /home/vojdel/.vimrc<CR><CR>

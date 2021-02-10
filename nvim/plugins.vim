@@ -1,6 +1,6 @@
 " TODO: Load plugins here (pathogen or vundle)
 
-if empty(glob('~/.vim/autoload/plug.vim'))
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -flo ~.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
@@ -8,7 +8,7 @@ endif
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 " Make sure you use single quotes
 
@@ -30,6 +30,11 @@ Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 " Libs Javascript Support
 Plug 'othree/javascript-libraries-syntax.vim'
+" JsDocs
+Plug 'heavenshell/vim-jsdoc', { 
+  \ 'for': ['javascript', 'javascript.jsx''typescript'], 
+  \ 'do': 'make install'
+\}
 
 " Emmet
 Plug 'mattn/emmet-vim', { 'for': 'html' }
@@ -74,6 +79,15 @@ Plug 'editorconfig/editorconfig-vim'
 
 " Navigation like Tmux - Ctrl + (h,j,k,l)
 Plug 'christoomey/vim-tmux-navigator'
+
+" typing
+Plug 'alvan/vim-closetag'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
+
+" test
+Plug 'tyewang/vimux-jest-test'
+Plug 'janko-m/vim-test'
 
 " Git
 if has('nvim') || has('patch-8.0.902')
