@@ -10,6 +10,16 @@ map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove 
 
+" buftabline
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
 map <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
@@ -69,4 +79,4 @@ nnoremap / /\v
 vnoremap / /\v
 
 " Source File .vimrc
-nnoremap <leader>v :source /home/vojdel/.vimrc<CR><CR>
+nnoremap <leader>rl :source /home/vojdel/.vimrc<CR><CR>
