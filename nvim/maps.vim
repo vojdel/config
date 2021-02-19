@@ -3,14 +3,24 @@
 let mapleader = " "
 noremap <leader>gs :CocSearch
 noremap <leader>fs :Files<cr>
-noremap <leader>n :tabnew 
-noremap <leader>nn :tabnew<cr>
+
+" Control Tabs
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove 
+
+" Opens a new tab with the current buffer's path
+" Super useful when editing files in the same directory
+map <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
+
 " testing
 nnoremap <Leader>t :TestNearest<CR>
 nnoremap <Leader>T :TestFile<CR>
 nnoremap <Leader>TT :TestSuite<CR>
 " NERDTree
-map <Leader>nt :NERDTreeFind<CR>
+map <leader>nb :NERDTreeFromBookmark 
+map <leader>nf :NERDTreeFind<cr>
 noremap <leader><tab> :NERDTreeToggle<CR>
 noremap <S-tab> :NERDTreeToggle<CR>
 " S (Shift)
@@ -34,6 +44,10 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 :imap ii <Esc>
+
+"Format sql
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 " diagnostics
 nnoremap <Leader>dia  :<C-u>CocList diagnostics<cr>
