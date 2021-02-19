@@ -79,4 +79,4 @@ nnoremap / /\v
 vnoremap / /\v
 
 " Source File .vimrc
-nnoremap <leader>rl :source /home/vojdel/.vimrc<CR><CR>
+nnoremap <leader>rl :source ~/.config/nvim/init.vim<CR><CR>
