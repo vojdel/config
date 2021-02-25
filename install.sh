@@ -2,6 +2,16 @@
 # autor: Jose Daniel
 # version: 0.1.0
 
+require_programs=(git wget zsh unzip)
+
+
+# Check for required programs
+for cmd in ${require_programs[@]};
+do
+  [!$(command -v $cmd)] && echo Command $cmd is required to run this
+  script && exit 1
+done
+
 # OhMyZsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
