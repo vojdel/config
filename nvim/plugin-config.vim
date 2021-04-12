@@ -21,9 +21,12 @@ let g:user_emmet_mode='n'    "only enable normal mode functions.
 let g:user_emmet_mode='inv'  "enable all functions, which is equal to
 let g:user_emmet_mode='a'    "enable all function in all mode.
 
+" NERDCommenter
+let g:NERDCreateDefaultMappings = 1
+
 " Need Tree Configure
 let NERDTreeQuitOnOpen=1
-let NERDTreeShowHidden=1
+"let NERDTreeShowHidden=1
 let NERDTreeAutoDeleteBuffer=1
 let NERDTreeMinimalUI=1
 let NERDTreeDirArrows=1
@@ -39,6 +42,11 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Dirty"     : "✗",
     \ "Ignored"   : "☒",
     \ }
+
+let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
+let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
+let g:NERDTreeSyntaxEnabledExactMatches = ['dropbox', 'node_modules', 'favicon.ico'] " enable highlight for dropbox and node_modules folders, and favicon.ico files with default colors
+
 
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'

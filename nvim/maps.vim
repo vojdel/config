@@ -3,9 +3,16 @@
 let mapleader = " "
 noremap <leader>gs :CocSearch
 noremap <leader>fs :Files<cr>
-
+" Buffer List
+noremap <Leader>fb :Buffer<cr>
+" Search Line
+noremap <leader>fl :BLines<cr>
+" Search between commits
+noremap <leader>fc :Commits<cr>
+" Change file tipe
+noremap <leader>ft :Filetypes<cr>
 " Control Tabs
-map <leader>tn :tabnew<cr>
+map <leader>tn :tabnew .<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove 
@@ -63,6 +70,11 @@ nmap <leader>f  <Plug>(coc-format-selected)
 nnoremap <Leader>dia  :<C-u>CocList diagnostics<cr>
 nnoremap <leader>kp :let @*=expand("%")<CR>
 
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
 " Move up/down editor lines
 nnoremap j gj
 nnoremap k gk
@@ -80,3 +92,16 @@ vnoremap / /\v
 
 " Source File .vimrc
 nnoremap <leader>rl :source ~/.config/nvim/init.vim<CR><CR>
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction

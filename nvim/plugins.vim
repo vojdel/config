@@ -12,6 +12,9 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Make sure you use single quotes
 
+" Vim Startify
+Plug 'mhinz/vim-startify'
+
 " Use release branch (recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -32,7 +35,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 " JsDocs
 Plug 'heavenshell/vim-jsdoc', { 
-  \ 'for': ['javascript', 'javascript.jsx''typescript'], 
+  \ 'for': ['javascript', 'javascript.jsx', 'typescript'], 
   \ 'do': 'make install'
 \}
 
@@ -46,9 +49,13 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin' " NERDTree Git
 Plug 'jistr/vim-nerdtree-tabs'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " hexcolor
 Plug 'etdev/vim-hexcolor'
+
+" Css-Color
+Plug 'ap/vim-css-color'
 
 " Tabular
 Plug 'godlygeek/tabular'
