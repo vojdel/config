@@ -1,6 +1,15 @@
 {
-  "coc.source.emoji.filetypes": null,
-  "coc.source.emoji.triggerCharacters": [
-    ":"
-  ]
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
+  "coc.preferences.formatOnSaveFiletypes" : [ "javascript", "javascriptreact" ],
+  "eslint.run": "onSave",
+  "eslint.autoFixOnSave": true,
+  "tsserver.implicitProjectConfig.checkJs": true,
+  "javascript.suggest.autoImports": true,
+  "javascript.preferences.importModuleSpecifier": "auto",
+  "markdownlint.config": {
+    "no-multiple-blanks": false,
+    "blanks-around-headers": true,
+    "single-title": false
+  }
 }

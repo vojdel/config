@@ -1,13 +1,14 @@
 " -- EXTERNAL CONFIGS --
-source ~/.config/nvim/plugins.vim
-source ~/.config/nvim/maps.vim
-source ~/.config/nvim/plugin-config.vim
+so ~/.config/nvim/plugins.vim
+so ~/.config/nvim/maps.vim
+so ~/.config/nvim/plugin-config.vim
 " Color scheme (terminal)
 set t_Co=256
+set termguicolors
 set background=dark
-let g:dracula_italic = 0
-let g:dracula_colorterm = 0
-colorscheme dracula
+let g:tokyonight_style = "night"
+let g:tokyonight_italic_functions = 1
+colorscheme tokyonight
 " Clean Search Init
 " autocmd vimenter * :let @/=''
 " Security
@@ -30,7 +31,7 @@ set visualbell
 set encoding=utf-8
 " Whitespace
 set wrap
-set textwidth=74
+"set textwidth=74
 set formatoptions=tcqrn1
 set tabstop=4
 set shiftwidth=2
@@ -51,8 +52,11 @@ set laststatus=2
 " Last line
 set showmode
 set showcmd
-"" Searching
+" Searching
 set hlsearch                    " highlight matches
 set incsearch                   " incremental searching
 set ignorecase                  " searches are case insensitive...
 set smartcase                   " ... unless they contain at least one capital letter
+" Highlight cursor line underneath the cursor horizontally.
+set cursorline
+set mmp=5000

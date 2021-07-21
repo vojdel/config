@@ -22,10 +22,10 @@ cp .tmux/.tmux.conf.local .
 
 # Configure OhMyTmux
 echo "
-tmux_conf_theme_left_separator_main='\uE0B0'
-tmux_conf_theme_left_separator_sub='\uE0B1'
-tmux_conf_theme_right_separator_main='\uE0B2'
-tmux_conf_theme_right_separator_sub='\uE0B3'
+tmux_conf_theme_left_separator_main='\uE0C0'
+tmux_conf_theme_left_separator_sub='\uE0C1'
+tmux_conf_theme_right_separator_main='\uE0C2'
+tmux_conf_theme_right_separator_sub='\uE0C3'
 
 tmux_conf_copy_to_os_clipboard=true" >> ~/.tmux.conf.local
 

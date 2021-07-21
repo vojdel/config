@@ -12,10 +12,17 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Make sure you use single quotes
 
-" Vim Startify
-Plug 'mhinz/vim-startify'
+" Dashboard
+Plug 'glepnir/dashboard-nvim'
 
-" Use release branch (recommend)
+" Buufer Line
+Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
+" Plug 'ryanoasis/vim-devicons' Icons without colours
+Plug 'akinsho/nvim-bufferline.lua'
+" Import Cost
+Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
+"
+"" Use release branch (recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Use Search Files
@@ -24,7 +31,6 @@ Plug 'junegunn/fzf.vim'
 
 " Modifica la Barra
 Plug 'vim-airline/vim-airline'
-" Modifica lo Visual
 Plug 'vim-airline/vim-airline-themes'
 
 " Javascript Support
@@ -35,9 +41,15 @@ Plug 'leafgarland/typescript-vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 " JsDocs
 Plug 'heavenshell/vim-jsdoc', { 
-  \ 'for': ['javascript', 'javascript.jsx', 'typescript'], 
+  \ 'for': ['javascript', 'javascriptreact.jsx', 'typescript'], 
   \ 'do': 'make install'
 \}
+
+" PHP and Laravel Support
+Plug 'tpope/vim-dispatch'             "| Optional
+Plug 'tpope/vim-projectionist'        "|
+Plug 'noahfrederick/vim-composer'     "|
+Plug 'noahfrederick/vim-laravel'
 
 " Emmet
 Plug 'mattn/emmet-vim', { 'for': 'html' }
@@ -60,11 +72,8 @@ Plug 'ap/vim-css-color'
 " Tabular
 Plug 'godlygeek/tabular'
 
-" syntax
-Plug 'scrooloose/syntastic'
-
-" Dracula Theme
-Plug 'dracula/vim', { 'as': 'dracula' }
+" Themes
+Plug 'folke/tokyonight.nvim'
 
 " EasyMotion
 Plug 'easymotion/vim-easymotion'
@@ -74,15 +83,13 @@ Plug 'terryma/vim-multiple-cursors'
 
 " Comments
 Plug 'preservim/nerdcommenter'
+Plug 'jbgutierrez/vim-better-comments'
 
 " Snippers
 Plug 'sirver/ultisnips'
 
 " Ident Line
-Plug 'Yggdroot/indentLine'
-
-" Edit Config
-Plug 'editorconfig/editorconfig-vim'
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 " Navigation like Tmux - Ctrl + (h,j,k,l)
 Plug 'christoomey/vim-tmux-navigator'
@@ -93,8 +100,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 
 " test
-Plug 'tyewang/vimux-jest-test'
-Plug 'janko-m/vim-test'
+"Plug 'tyewang/vimux-jest-test'
+"Plug 'janko-m/vim-test'
 
 " Git
 if has('nvim') || has('patch-8.0.902')
