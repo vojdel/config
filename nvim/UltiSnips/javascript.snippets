@@ -38,8 +38,13 @@ describe('$1', () => {
 endsnippet
 
 snippet co "const = " b
-const $1 = $2
+const $1 = $2;
 endsnippet
+
+snippet cof "const = () {}" b
+const $1 = ($2) => {
+  $3;
+}
 
 snippet obj "= {}" b
 const $1 = {
@@ -57,7 +62,7 @@ snippet des "const {} =" b
 const { $1 } = $2
 endsnippet
 
-snippet rfc "React function component" b
+snippet rnfc "React Native function component" b
 import React from 'react'
 import { ${4} } from 'react-native'
 
@@ -67,4 +72,20 @@ const $1 = ${2:( $3 )} => (
   </$4>
 )
 export default $1
+endsnippet
+
+snippet eco "export const {} =" b
+export const ($1) = {
+  $2;
+}
+endsnippet
+
+snippet fco "const = () => { fetch() }" b
+const $1 = ($2) => {
+  return fetch($3, {
+  $4
+	  })
+	  .then(response => response.json())
+	  .then($5)
+}
 endsnippet

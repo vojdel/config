@@ -15,7 +15,7 @@ export ZSH="/home/vojdel/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="spaceship"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -87,6 +87,7 @@ plugins=(
 	colored-man-pages
 	zsh-autosuggestions
 	zsh-syntax-highlighting
+    zbell
 	)
 
 source $ZSH/oh-my-zsh.sh
@@ -129,9 +130,11 @@ prompt_context() {
 
 # Alias
 
-alias zshconfig="vim ~/.zshrc"
-alias vimconfig="vim ~/.vimrc"
+alias zshconfig="nvim ~/.zshrc"
+alias nvimconfig="nvim ~/.config/nvim/init.vim"
 alias apache-serve="php -S localhost:8000"
+alias server="http-server -o -p"
+alias config="nvim -p ~/.config/bspwm/bspwmrc ~/.config/sxhkd/sxhkdrc ~/.config/bspwm/polybar/config"
 
 # Funciones
 function stop_db(){
@@ -148,3 +151,8 @@ alias glog='git log --graph --abbrev-commit --decorate --date=relative --all'
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 POWERLEVEL9K_LEGACY_ICON_SPACING=true
+export EDITOR='nvim'
+
+alias luamake=/home/vojdel/Workspace/lua-language-server/3rd/luamake/luamake
+
+export PATH="$HOME/tools/lua-language-server/bin/Linux:$PATH"
