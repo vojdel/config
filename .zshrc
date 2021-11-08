@@ -134,7 +134,7 @@ alias zshconfig="nvim ~/.zshrc"
 alias nvimconfig="nvim ~/.config/nvim/init.vim"
 alias apache-serve="php -S localhost:8000"
 alias server="http-server -o -p"
-alias config="nvim -p ~/.config/bspwm/bspwmrc ~/.config/sxhkd/sxhkdrc"
+alias config="nvim -p ~/.config/bspwm/bspwmrc ~/.config/sxhkd/sxhkdrc ~/.config/bspwm/polybar/config"
 
 # Funciones
 function stop_db(){
@@ -151,3 +151,8 @@ alias glog='git log --graph --abbrev-commit --decorate --date=relative --all'
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 POWERLEVEL9K_LEGACY_ICON_SPACING=true
+export EDITOR='nvim'
+
+alias luamake=/home/vojdel/Workspace/lua-language-server/3rd/luamake/luamake
+
+export PATH="$HOME/tools/lua-language-server/bin/Linux:$PATH"
