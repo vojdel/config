@@ -44,6 +44,7 @@ Plug 'lukas-reineke/indent-blankline.nvim' --  Ident Line
 Plug 'kyazdani42/nvim-tree.lua' --  File Explorer
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'folke/trouble.nvim'
+Plug 'folke/lsp-colors.nvim'
 Plug 'onsails/lspkind-nvim'
 
 -- Completion

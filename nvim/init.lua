@@ -3,6 +3,8 @@ require('plug')
 
 -- Configurations Plugins
 require('tokyo-night')
+require('troublerc')
+require('lspcolor')
 require('treesitterc')
 require('buffer-line')
 require('ident-line')

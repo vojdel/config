@@ -113,7 +113,7 @@ require'lspconfig'.sumneko_lua.setup {
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'tsserver', 'vimls', 'phpactor', 'diagnosticls', 'bashls', 'eslint', 'sqlls' }
+local servers = { 'tsserver', 'vimls', 'phpactor', 'diagnosticls', 'bashls', 'eslint' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -126,6 +126,8 @@ end
 
 nvim_lsp.sqlls.setup{
   cmd = {'sql-language-server', "up", "--method", "stdio"},
+    on_attach = on_attach,
+    capabilities = capabilities,
 }
 
 -- icon
@@ -139,3 +141,12 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     }
   }
 )
+
+nvim_lsp.emmet_ls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { "html", "css", "javascriptreact", "typescriptreact" },
+    flags = {
+      debounce_text_changes = 150,
+    }
+}
