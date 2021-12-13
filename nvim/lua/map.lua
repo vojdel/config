@@ -1,70 +1,98 @@
 local key = require('tools')
 
-local map = function(keys)
-  local opts = { noremap = true }
-  for i, v in pairs(keys) do
-    if type(i) == 'string' then opts[i] = v end
-  end
-  vim.api.nvim_set_keymap(keys[1], keys[2], keys[3], opts)
-end
-
 -- Leader Key
 vim.g.mapleader = ' '
 
 -- BufferLine
-map { 'n', '<leader>tn', ':tabnew<cr>' }
-map { 'n', '<leader>tm', ':BufferLinePick<cr>' }
-map { 'n', '<leader>tc', ':BufferLinePickClose<cr>' }
-map { 'n', '<leader>tr', ':BufferLineMoveNext<cr>' }
-map { 'n', '<leader>tp', ':BufferLineMoveNext<cr>' }
-map { 'n', '<leader>h', ':BufferLineCyclePrev<cr>' }
-map { 'n', '<leader>l', ':BufferLineCycleNext<cr>' }
-map { 'n', '<leader>th', ':BufferLineCloseLeft<cr>' }
-map { 'n', '<leader>tl', ':BufferLineCloseRight<cr>' }
--- Numbers
---map { 'n', '<leader>1', '<Cmd>BufferLineGoToBuffer 1<CR>' }
---map { 'n', '<leader>2', '<Cmd>BufferLineGoToBuffer 2<CR>' }
---map { 'n', '<leader>3', '<Cmd>BufferLineGoToBuffer 3<CR>' }
---map { 'n', '<leader>4', '<Cmd>BufferLineGoToBuffer 4<CR>' }
---map { 'n', '<leader>5', '<Cmd>BufferLineGoToBuffer 5<CR>' }
---map { 'n', '<leader>6', '<Cmd>BufferLineGoToBuffer 6<CR>' }
---map { 'n', '<leader>7', '<Cmd>BufferLineGoToBuffer 7<CR>' }
---map { 'n', '<leader>8', '<Cmd>BufferLineGoToBuffer 8<CR>' }
---map { 'n', '<leader>9', '<Cmd>BufferLineGoToBuffer 9<CR>' }
-
+key.nmap('<leader>tn', ':tabnew<cr>')
+key.nmap('<leader>tm', ':BufferLinePick<cr>')
+key.nmap('<leader>tc', ':BufferLinePickClose<cr>')
+key.nmap('<leader>tr', ':BufferLineMoveNext<cr>')
+key.nmap('<leader>tp', ':BufferLineMoveNext<cr>')
+key.nmap('<leader>h', ':BufferLineCyclePrev<cr>')
+key.nmap('<leader>l', ':BufferLineCycleNext<cr>')
+key.nmap('<leader>th', ':BufferLineCloseLeft<cr>')
+key.nmap('<leader>tl', ':BufferLineCloseRight<cr>')
+key.nmap("<A-1>", "<Cmd>BufferLineGoToBuffer 1<CR>")
+key.nmap("<A-2>", ":BufferLineGoToBuffer 2<CR>")
+key.nmap("<A-3>", ":BufferLineGoToBuffer 3<CR>")
+key.nmap("<A-4>", ":BufferLineGoToBuffer 4<CR>")
+key.nmap("<A-5>", ":BufferLineGoToBuffer 5<CR>")
+key.nmap("<A-6>", ":BufferLineGoToBuffer 6<CR>")
+key.nmap("<A-7>", ":BufferLineGoToBuffer 7<CR>")
+key.nmap("<A-8>", ":BufferLineGoToBuffer 8<CR>")
+key.nmap("<A-9>", ":BufferLineGoToBuffer 9<CR>")
 -- Save, Quit, Esc & Esc terminal
-map { 'n', '<leader>a', ':w<cr>' }
-map { 'n', '<leader>A', ':wall<cr>' }
-map { 'n', 'q', ':q<cr>' }
-map { 'n', 'qq', ':qall<cr>' }
-map { 'n', '<leader>Q', ':q!<cr>' }
-map { 'i', 'jj', '<Esc>' }
-map { 'n', 'tt', ':t.<cr>' }
+key.nmap('<leader>a', ':w<cr>')
+key.nmap('<leader>A', ':wall<cr>')
+key.nmap('<leader>Q', ':q!<cr>')
+key.imap('jj', '<Esc>')
+
+-- Copy line & copy end line
+key.nmap('tt', ':t.<cr>')
+key.nmap('Y', 'y$>')
+
+-- move lines
+key.nmap('<A-k>', ':m .-2<CR>')
+key.nmap('<A-j>', ':m .+1<CR>')
+
+-- Clean Searche
+key.nmap("//", ":nohl<CR>")
+
+-- open terminal
+key.vmap("<leader>tt", "<cmd>split<CR><cmd>ter<CR><cmd>resize 15<CR>i")
+key.nmap("<leader>tt", "<cmd>split<CR><cmd>ter<CR><cmd>resize 15<CR>i")
+key.tmap("<ESC>", "<C-\\><C-n>")
+
+-- Add ; in end line
+key.nmap("<leader>;", "$a;<ESC>")
 
 -- EasyMotion
 key.nmap("<Leader>es", "<Plug>(easymotion-s2)")
 
+-- Diagnostic
+--key.nmap('<leader>kp', ":lua print(vim.fn.expand('%:p')) g< :!xclip -i<CR>" )
+--key.nmap('<leader>kp', "<Cmd>lua require'tools'.get_relative_fname()<CR>" )
+key.nmap('<leader>kp', key.get_relative_fname())
+--key.nmap('<leader>kp', ':!xclip -i "/home/vojdel/Workspace/personalConfigs/nvim/lua/tools.lua"')
+
+-- Resize Windows
+key.nmap('<leader>>', '10<c-w>>')
+key.nmap('<leader><', '10<c-w><')
+
 -- Faster Scrolling
 key.nmap("<C-e>", "15<C-e>")
 key.nmap("<C-y>", "15<C-y>")
---map { 'n', '<silent> <C-y>', '15<C-y>' }
+--key.nmap('<silent> <C-y>', '15<C-y>')
 
 -- Nvim Tree
-map { 'n', '<S-Tab>', ':NvimTreeToggle<CR>' }
-map { 'n', '<leader>r', ':NvimTreeRefresh<CR>' }
-map { 'n', '<leader>n', ':NvimTreeFindFile<CR>' }
+key.nmap('<S-Tab>', ':NvimTreeToggle<CR>')
+key.nmap('<leader>r', ':NvimTreeRefresh<CR>')
+key.nmap('<leader>n', ':NvimTreeFindFile<CR>')
 
 -- Go init.lua, source init.lua
-map { 'n', '<leader>ev', ':tabnew $MYVIMRC<CR>' }
-map { 'n', '<leader>sv', ':source $MYVIMRC<CR>' }
+key.nmap('<leader>ev', ':tabnew $MYVIMRC<CR>')
+key.nmap('<leader>sv', ':Reload<CR>:nohl<CR>')
+key.nmap('<leader>sr', ':Restart<CR>:nohl<CR>')
+
+-- Git
+key.nmap('<leader>G', ':G<CR>')
+key.nmap('<leader>gp', ':Gpush<CR>')
+key.nmap('<leader>gl', ':Gpull<CR>')
+key.nmap('<leader>ht', ':Gitsigns toggle_current_line_blame<CR>')
 
 -- telescope's Config
-key.nmap('ff', '<cmd>Telescope find_files prompt_prefix=🔍<cr>')
+key.nmap('ff', '<cmd>Telescope find_files<cr>')
 key.nmap('fl', '<cmd>Telescope current_buffer_fuzzy_find<cr>')
 key.nmap('fg', '<cmd>Telescope live_grep<cr>')
 key.nmap('fb', '<cmd>Telescope buffers<cr>')
 key.nmap('fn', '<cmd>Telescope help_tags<cr>')
 key.nmap('fc', '<cmd>Telescope keymaps<cr>')
+key.nmap('<leader>ff', "<cmd>lua require'telescope.builtin'.find_files({find_command={'fd', vim.fn.expand('<cword>')}})<CR>")
+key.nmap('<leader>fg', "<cmd>lua require'telescope.builtin'.grep_string()<CR>")
+key.nmap('<leader>gc', "<cmd>lua require'telescope.builtin'.git_branches()<cr>")
+key.nmap('<leader>gl', "<cmd>lua require'telescope.builtin'.git_commits()<cr>")
+key.nmap('<leader>gs', "<cmd>lua require'telescope.builtin'.git_status()<cr>")
 
 -- LSPSaga
 key.nmap('K', ':Lspsaga hover_doc<CR>')
@@ -74,8 +102,8 @@ key.nmap('gr', ':Lspsaga rename<CR>')
 key.nmap('gd', ':Lspsaga preview_definition<CR>')
 key.nmap('<A-d>', ':Lspsaga open_floaterm<CR>')
 key.tmap('<A-d>', '<C-\\><C-n>:Lspsaga close_floaterm<CR>')
-key.nmap('<leader>ca', "<cmd>lua require('lspsaga.codeaction').code_action()<CR>")
-key.vmap('<leader>ca', ":<C-U>lua require('lspsaga.codeaction').code_action()<CR>")
+--key.nmap("<leader>ca", "<cmd>lua require('lspsaga.codeaction').code_action()<CR>")
+--key.vmap("<leader>ca", "<cmd>'<,'>lua require('lspsaga.codeaction').range_code_action()<CR>")
 
 -- Completion
 -- Use <Tab> and <S-Tab> to navigate through popup menu
@@ -83,9 +111,9 @@ key.imap('<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', { noremap = true, sile
 key.imap('<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', { noremap = true, silent = false, expr = true })
 
 -- Trouble
-vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>Trouble<cr>", {silent = true, noremap = true})
-vim.api.nvim_set_keymap("n", "<leader>xw", "<cmd>Trouble lsp_workspace_diagnostics<cr>", {silent = true, noremap = true})
-vim.api.nvim_set_keymap("n", "<leader>xd", "<cmd>Trouble lsp_document_diagnostics<cr>", {silent = true, noremap = true})
-vim.api.nvim_set_keymap("n", "<leader>xl", "<cmd>Trouble loclist<cr>", {silent = true, noremap = true})
-vim.api.nvim_set_keymap("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", {silent = true, noremap = true})
-vim.api.nvim_set_keymap("n", "gR", "<cmd>Trouble lsp_references<cr>", {silent = true, noremap = true})
+key.nmap("<leader>xx", "<cmd>Trouble<cr>")
+key.nmap("<leader>xw", "<cmd>Trouble lsp_workspace_diagnostics<cr>")
+key.nmap("<leader>xd", "<cmd>Trouble lsp_document_diagnostics<cr>")
+key.nmap("<leader>xl", "<cmd>Trouble loclist<cr>")
+key.nmap("<leader>xq", "<cmd>Trouble quickfix<cr>")
+key.nmap("gR", "<cmd>Trouble lsp_references<cr>")

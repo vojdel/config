@@ -1,7 +1,7 @@
 -- settings -- this is all of the basic vim settings
 local o = vim.o  -- global
 local wo = vim.wo -- window local
-local bo = vim.bo -- buffer local
+--local bo = vim.bo -- buffer local
 local set = vim.opt
 
 -- global options -- I could explain all of these but then again :h VAR exists...
@@ -36,8 +36,11 @@ set.splitright = true		-- Split Windows always right
 set.splitbelow = true		-- Split Windows always below
 set.hidden = true		    -- Allow hidden buffer
 set.termguicolors = true
+set.foldmethod="syntax"
+set.foldlevelstart=1
+set.cc = '120'               -- Color column
 
--- window-local option
+--window-local option
 wo.number = true		-- Number Lines
 wo.relativenumber = true	-- Relative Number
 wo.wrap = true			-- Whitespace

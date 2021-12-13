@@ -4,20 +4,24 @@ require'nvim-treesitter.configs'.setup {
     disable = {},
   },
   indent = {
-    enable = false,
-    disable = {},
+    enable = true,
+    disable = { 'javascriptreact' },
   },
   ensure_installed = {
     "tsx",
     "php",
     "json",
     "html",
+    "css",
     "lua",
     "bash",
     "c",
     "jsdoc",
     "dockerfile",
-    "cpp"
+    "vim",
+    "cpp",
+    "yaml",
+    "comment"
   },
 }
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()

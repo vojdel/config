@@ -135,6 +135,9 @@ alias nvimconfig="nvim ~/.config/nvim/init.vim"
 alias apache-serve="php -S localhost:8000"
 alias server="http-server -o -p"
 alias config="nvim -p ~/.config/bspwm/bspwmrc ~/.config/sxhkd/sxhkdrc ~/.config/bspwm/polybar/config"
+alias ll="exa --long --header --icons --git -a"
+alias php='/bin/php'
+alias composer="/bin/php /usr/local/bin/composer/composer"
 
 # Funciones
 function stop_db(){

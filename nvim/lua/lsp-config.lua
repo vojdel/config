@@ -5,6 +5,9 @@ local protocol = require'vim.lsp.protocol'
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
+
+  --require "lsp_signature".on_attach()  -- Note: add in lsp client on-attach
+
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -19,19 +22,22 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  --buf_set_keymap('n', '<space>K', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<C-A>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
   buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  --buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)  -- formatting
+
+vim.api.nvim_buf_set_keymap(0, "n", "<space>ca", "<cmd>Lspsaga code_action<cr>", {silent = true, noremap = true})
+vim.api.nvim_buf_set_keymap(0, "x", "<space>ca", ":<c-u>Lspsaga range_code_action<cr>", {silent = true, noremap = true})
 
   if client.resolved_capabilities.document_formatting then
     vim.api.nvim_command [[augroup Format]]
@@ -67,18 +73,8 @@ local on_attach = function(client, bufnr)
     'ﬦ', -- Operator
     '', -- TypeParameter
   }
-end
 
---local system_name
---if vim.fn.has("mac") == 1 then
-  --system_name = "macOS"
---elseif vim.fn.has("unix") == 1 then
-  --system_name = "Linux"
---elseif vim.fn.has('win32') == 1 then
-  --system_name = "Windows"
---else
-  --print("Unsupported system for sumneko")
---end
+end
 
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
@@ -86,6 +82,7 @@ table.insert(runtime_path, "lua/?/init.lua")
 
 require'lspconfig'.sumneko_lua.setup {
     -- cmd = {sumneko_binary_path, "-E", sumneko_root_path .. "/main.lua"};
+    on_attach = on_attach,
     cmd = {"/home/vojdel/Workspace/lua-language-server/bin/Linux/lua-language-server"};
     settings = {
         Lua = {
@@ -113,22 +110,22 @@ require'lspconfig'.sumneko_lua.setup {
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'tsserver', 'vimls', 'phpactor', 'diagnosticls', 'bashls', 'eslint' }
+local servers = {
+  'tsserver', 'vimls', 'phpactor', 'diagnosticls', 'bashls', 'eslint', 'jsonls'
+}
+
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
     capabilities = capabilities,
     flags = {
-      debounce_text_changes = 150,
+      debounce_text_changes = 100,
+    },
+    settings = {
+      format = { enable = true }
     }
   }
 end
-
-nvim_lsp.sqlls.setup{
-  cmd = {'sql-language-server', "up", "--method", "stdio"},
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
 
 -- icon
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -142,11 +139,18 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
-nvim_lsp.emmet_ls.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    filetypes = { "html", "css", "javascriptreact", "typescriptreact" },
-    flags = {
-      debounce_text_changes = 150,
-    }
+local util = require 'lspconfig/util'
+
+local capabilitiesEmmet = vim.lsp.protocol.make_client_capabilities()
+capabilitiesEmmet.textDocument.completion.completionItem.snippetSupport = true
+
+nvim_lsp.emmet_language_server.setup {
+  capabilities = capabilitiesEmmet;
+  cmd = {'emmet-language-server', '--stdio'};
+  filetypes = {
+    'html', 'typescriptreact', 'javascriptreact', 'javascript',
+    'typescript', 'javascript.jsx', 'typescript.tsx', 'css'
+  },
+  root_dir = util.root_pattern("package.json", ".git"),
+  settings = {};
 }

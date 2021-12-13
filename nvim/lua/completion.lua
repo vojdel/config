@@ -4,6 +4,15 @@ vim.opt.completeopt= { "menuone", "noinsert", "noselect" }
 local cmp = require'cmp'
 local lspkind = require'lspkind'
 
+local source_mapping = {
+	buffer = "[Buffer]",
+	nvim_lsp = "[LSP]",
+	nvim_lua = "[Lua]",
+	cmp_tabnine = "[TN]",
+	path = "[Path]",
+	UltiSnips = "[UltiSnips]",
+}
+
 local has_any_words_before = function()
   if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
     return false
@@ -66,10 +75,25 @@ cmp.setup({
       { name = 'nvim_lsp' },
       { name = 'ultisnips' }, -- For ultisnips users.
       { name = 'buffer' },
+      { name = 'cmp_tabnine' },
     },
     formatting = {
-      format = lspkind.cmp_format({with_text = false, maxwidth = 50})
+      format = function(entry, vim_item)
+			vim_item.kind = lspkind.presets.default[vim_item.kind]
+			local menu = source_mapping[entry.source.name]
+			if entry.source.name == 'cmp_tabnine' then
+				if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
+					menu = entry.completion_item.data.detail .. ' ' .. menu
+				end
+				vim_item.kind = ''
+			end
+			vim_item.menu = menu
+			return vim_item
+		end
     }
   })
 
   vim.cmd [[highlight! default link CmpItemKind CmpItemMenuDefault]]
+
+
+vim.g.completion_trigger_character = { '.' }

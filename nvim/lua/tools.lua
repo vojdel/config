@@ -55,4 +55,11 @@ function U.GetLineEnd()
   return label[vim.bo.fileformat]
 end
 
+function U.get_relative_fname()
+  local fname = vim.fn.expand('%:p')
+  local newFileName = ":!echo " ..  fname .. " | xclip -selection clipboard<CR>"
+  local command = string.gsub(newFileName, '/', '\\/')
+  return command
+end
+
 return U
