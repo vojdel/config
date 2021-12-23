@@ -57,7 +57,8 @@ end
 
 function U.get_relative_fname()
   local fname = vim.fn.expand('%:p')
-  local newFileName = ":!echo " ..  fname .. " | xclip -selection clipboard<CR>"
+  local name = tostring(fname)
+  local newFileName = ":!echo " ..  name .. " | xclip -selection clipboard<CR>"
   local command = string.gsub(newFileName, '/', '\\/')
   return command
 end

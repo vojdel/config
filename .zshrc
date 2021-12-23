@@ -137,7 +137,8 @@ alias server="http-server -o -p"
 alias config="nvim -p ~/.config/bspwm/bspwmrc ~/.config/sxhkd/sxhkdrc ~/.config/bspwm/polybar/config"
 alias ll="exa --long --header --icons --git -a"
 alias php='/bin/php'
-alias composer="/bin/php /usr/local/bin/composer/composer"
+alias composer="/usr/local/bin/composer"
+alias lg='lazygit'
 
 # Funciones
 function stop_db(){

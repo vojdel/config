@@ -39,7 +39,7 @@ set.termguicolors = true
 set.foldmethod="syntax"
 set.foldlevelstart=1
 set.cc = '120'               -- Color column
-
+--set.statusline:append("< %L ") -- Total lines
 --window-local option
 wo.number = true		-- Number Lines
 wo.relativenumber = true	-- Relative Number

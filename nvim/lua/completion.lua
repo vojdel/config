@@ -75,7 +75,7 @@ cmp.setup({
       { name = 'nvim_lsp' },
       { name = 'ultisnips' }, -- For ultisnips users.
       { name = 'buffer' },
-      { name = 'cmp_tabnine' },
+      --{ name = 'cmp_tabnine' },
     },
     formatting = {
       format = function(entry, vim_item)

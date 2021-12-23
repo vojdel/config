@@ -83,11 +83,13 @@ key.nmap('<leader>ht', ':Gitsigns toggle_current_line_blame<CR>')
 
 -- telescope's Config
 key.nmap('ff', '<cmd>Telescope find_files<cr>')
+key.nmap('fr', '<cmd>Telescope registers<cr>')
 key.nmap('fl', '<cmd>Telescope current_buffer_fuzzy_find<cr>')
 key.nmap('fg', '<cmd>Telescope live_grep<cr>')
 key.nmap('fb', '<cmd>Telescope buffers<cr>')
 key.nmap('fn', '<cmd>Telescope help_tags<cr>')
 key.nmap('fc', '<cmd>Telescope keymaps<cr>')
+key.nmap('fr', '<cmd>Telescope keymaps<cr>')
 key.nmap('<leader>ff', "<cmd>lua require'telescope.builtin'.find_files({find_command={'fd', vim.fn.expand('<cword>')}})<CR>")
 key.nmap('<leader>fg', "<cmd>lua require'telescope.builtin'.grep_string()<CR>")
 key.nmap('<leader>gc', "<cmd>lua require'telescope.builtin'.git_branches()<cr>")

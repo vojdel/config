@@ -22,6 +22,7 @@ require('gitsinsrc')
 require('colorizerrc')
 require('reload')
 --require('importcost')
+require('dashboardrc')
 
 -- Mappings
 require('map')
