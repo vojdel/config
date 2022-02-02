@@ -1,6 +1,7 @@
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local nvim_lsp = require('lspconfig')
 local protocol = require'vim.lsp.protocol'
+local util = require('lspconfig.util')
 
 local function lsp_highlight_document(client)
   -- Set autocommands conditional on server_capabilities
@@ -48,7 +49,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   --buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.show()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
@@ -135,7 +136,7 @@ require'lspconfig'.sumneko_lua.setup {
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = {
-  'tsserver', 'vimls', 'phpactor', 'diagnosticls', 'bashls', 'eslint', 'jsonls'
+  'tsserver', 'vimls', 'intelephense', 'tailwindcss', 'diagnosticls', 'bashls', 'eslint', 'jsonls'
 }
 
 for _, lsp in ipairs(servers) do
@@ -150,6 +151,108 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
+nvim_lsp.tailwindcss.setup {
+  cmd = { "tailwindcss-language-server", "--stdio" },
+    -- filetypes copied and adjusted from tailwindcss-intellisense
+    filetypes = {
+      -- html
+      'aspnetcorerazor',
+      'astro',
+      'astro-markdown',
+      'blade',
+      'django-html',
+      'edge',
+      'eelixir', -- vim ft
+      'ejs',
+      'erb',
+      'eruby', -- vim ft
+      'gohtml',
+      'haml',
+      'handlebars',
+      'hbs',
+      'html',
+      -- 'HTML (Eex)',
+      -- 'HTML (EEx)',
+      'html-eex',
+      'heex',
+      'jade',
+      'leaf',
+      'liquid',
+      'markdown',
+      'mdx',
+      'mustache',
+      'njk',
+      'nunjucks',
+      'php',
+      'razor',
+      'slim',
+      'twig',
+      -- css
+      'css',
+      'less',
+      'postcss',
+      'sass',
+      'scss',
+      'stylus',
+      'sugarss',
+      -- js
+      --'javascript',
+      --'javascriptreact',
+      'reason',
+      'rescript',
+      --'typescript',
+      --'typescriptreact',
+      -- mixed
+      'vue',
+      'svelte',
+    },
+    init_options = {
+      userLanguages = {
+        eelixir = 'html-eex',
+        eruby = 'erb',
+      },
+    },
+    settings = {
+      tailwindCSS = {
+        validate = true,
+        lint = {
+          cssConflict = 'warning',
+          invalidApply = 'error',
+          invalidScreen = 'error',
+          invalidVariant = 'error',
+          invalidConfigPath = 'error',
+          invalidTailwindDirective = 'error',
+          recommendedVariantOrder = 'warning',
+        },
+        classAttributes = {
+          'class',
+          'className',
+          'classList',
+          'ngClass',
+        },
+      },
+    },
+    on_new_config = function(new_config)
+      if not new_config.settings then
+        new_config.settings = {}
+      end
+      if not new_config.settings.editor then
+        new_config.settings.editor = {}
+      end
+      if not new_config.settings.editor.tabSize then
+        -- set tab size for hover
+        new_config.settings.editor.tabSize = vim.lsp.util.get_effective_tabstop()
+      end
+    end,
+    root_dir = function(fname)
+      return util.root_pattern('tailwind.config.js', 'tailwind.config.ts')(fname)
+        or util.root_pattern('postcss.config.js', 'postcss.config.ts')(fname)
+        or util.find_package_json_ancestor(fname)
+        or util.find_node_modules_ancestor(fname)
+        or util.find_git_ancestor(fname)
+    end,
+}
 
 local signs = {
   { name = "DiagnosticSignError", text = "" },
@@ -203,19 +306,3 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
   border = "rounded",
 })
-
-local util = require 'lspconfig/util'
-
-local capabilitiesEmmet = vim.lsp.protocol.make_client_capabilities()
-capabilitiesEmmet.textDocument.completion.completionItem.snippetSupport = true
-
-nvim_lsp.emmet_language_server.setup {
-  capabilities = capabilitiesEmmet;
-  cmd = {'emmet-language-server', '--stdio'};
-  filetypes = {
-    'html', 'typescriptreact', 'javascriptreact', 'javascript',
-    'typescript', 'javascript.jsx', 'typescript.tsx', 'css'
-  },
-  root_dir = util.root_pattern("package.json", ".git"),
-  settings = {};
-}

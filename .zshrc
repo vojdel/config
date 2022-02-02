@@ -78,6 +78,7 @@ HIST_STAMPS="mm/dd/yyyy"
 plugins=(
 	git
 	github
+    gitignore
 	composer
 	node
 	npm
@@ -136,9 +137,11 @@ alias apache-serve="php -S localhost:8000"
 alias server="http-server -o -p"
 alias config="nvim -p ~/.config/bspwm/bspwmrc ~/.config/sxhkd/sxhkdrc ~/.config/bspwm/polybar/config"
 alias ll="exa --long --header --icons --git -a"
-alias php='/bin/php'
-alias composer="/usr/local/bin/composer"
+#alias php='/bin/php'
+#alias composer="/usr/local/bin/composer"
 alias lg='lazygit'
+alias e='ranger'
+alias speed='speedometer -rx wlp3s2 -tx wlp3s2 -i 0.25'
 
 # Funciones
 function stop_db(){
@@ -160,3 +163,9 @@ export EDITOR='nvim'
 alias luamake=/home/vojdel/Workspace/lua-language-server/3rd/luamake/luamake
 
 export PATH="$HOME/tools/lua-language-server/bin/Linux:$PATH"
+
+# Zoxide
+eval "$(zoxide init zsh)"
+
+# Bitwarden
+export BW_SESSION="Ab7A6BTZw51aOiSVAGYhgi75STeCrp4iwDeXo6xSauMlm1Drp7evthbAzcaZroBAsrXf4jwiw3PR9cLAqfEcKg=="

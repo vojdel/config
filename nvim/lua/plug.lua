@@ -81,5 +81,10 @@ Plug 'terryma/vim-multiple-cursors'
 -- PHP Blade
 Plug 'jwalton512/vim-blade'
 
+-- Easy Align
+Plug 'junegunn/vim-easy-align'
+
+-- Vim Emmet
+Plug 'mattn/emmet-vim'
 --  Initialize plugin system
 vim.call('plug#end')

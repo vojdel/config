@@ -119,3 +119,8 @@ key.nmap("<leader>xd", "<cmd>Trouble lsp_document_diagnostics<cr>")
 key.nmap("<leader>xl", "<cmd>Trouble loclist<cr>")
 key.nmap("<leader>xq", "<cmd>Trouble quickfix<cr>")
 key.nmap("gR", "<cmd>Trouble lsp_references<cr>")
+
+-- Merge Tools
+key.nmap('<leader>h', ':diffget LOCAL<CR>')
+key.nmap('<leader>j', ':diffget BASE<CR>')
+key.nmap('<leader>k', ':diffget REMOTE<CR>')
