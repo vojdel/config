@@ -184,7 +184,7 @@ nvim_lsp.tailwindcss.setup {
       'mustache',
       'njk',
       'nunjucks',
-      'php',
+      --'php',
       'razor',
       'slim',
       'twig',

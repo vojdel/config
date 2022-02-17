@@ -21,7 +21,8 @@ require'nvim-treesitter.configs'.setup {
     "vim",
     "cpp",
     "yaml",
-    "comment"
+    "comment",
+    "glimmer" -- hbs
   },
 }
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
