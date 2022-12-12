@@ -69,7 +69,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
-Plug('tzachar/cmp-tabnine', { [ 'do' ] = './install.sh' })
+--Plug('tzachar/cmp-tabnine', { [ 'do' ] = './install.sh' })
 
 -- For ultisnips users.
 Plug 'sirver/ultisnips'
@@ -86,5 +86,8 @@ Plug 'junegunn/vim-easy-align'
 
 -- Vim Emmet
 Plug 'mattn/emmet-vim'
+
+-- Prettier
+Plug 'sbdchd/neoformat'
 --  Initialize plugin system
 vim.call('plug#end')

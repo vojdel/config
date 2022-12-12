@@ -46,7 +46,7 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init("/home/vojdel/.config/awesome/theme.lua")
-beautiful.get().wallpaper = "/home/vojdel/Imágenes/Fondo de Pantalla/CaJukI0.jpg"
+beautiful.get().wallpaper = "/home/vojdel/Imágenes/Coven, Ahri, Ahri (League of Legends), Ahri Foxfire, Elderwood Ahri.jpg"
 
 -- This is used later as the default terminal and editor to run.
 terminal = "xfce4-terminal"

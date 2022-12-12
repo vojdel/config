@@ -3,14 +3,13 @@ local g = vim.g
 
 nvimtree.setup {
   -- closes neovim automatically when the tree is the last **WINDOW** in the view
-  auto_close  = false,
   -- hijacks new directory buffers when they are opened.
-  update_to_buf_dir   = {
-    -- enable the feature
-    enable = true,
-    -- allow to open the tree if it was previously closed
-    auto_open = true,
-  },
+  --update_to_buf_dir   = {
+    ---- enable the feature
+    --enable = true,
+    ---- allow to open the tree if it was previously closed
+    --auto_open = true,
+  --},
   -- show lsp diagnostics in the signcolumn
   diagnostics = {
     enable = false,
@@ -29,14 +28,22 @@ nvimtree.setup {
     -- width of the window, can be either a number (columns) or a string in `%`, for left or right side placement
     width = 40,
     -- height of the window, can be either a number (columns) or a string in `%`, for top or bottom side placement
-    height = 30,
+    --height = 30,
     -- Hide the root path of the current folder on top of the tree
     hide_root_folder = false,
     -- side of the tree, can be one of 'left' | 'right' | 'top' | 'bottom'
     side = 'left',
     -- if true the tree will resize itself after opening a file
-    auto_resize = false
-  }
+    --auto_resize = false
+  },
+    --special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
+    --symlink_destination = true,
+    git = {
+        enable = true,
+        ignore = true,
+        show_on_dirs = true,
+        timeout = 400,
+      },
 }
 
 g.nvim_tree_icons = {

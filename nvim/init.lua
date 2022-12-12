@@ -1,6 +1,9 @@
 -- Plugins
 require('plug')
 
+-- Mappings
+require('map')
+
 -- Configurations Plugins
 require('tokyo-night')
 require('troublerc')
@@ -13,9 +16,9 @@ require('buffer-line')
 require('ident-line')
 require('closetag')
 --require('ultisnipper')
-require('lspkindrc')
+--require('lspkindrc')
 require('./completion')
- require('tabnine')
+--require('tabnine')
 require('telescope-config')
 require('lualine-config')
 require('gitsinsrc')
@@ -24,11 +27,11 @@ require('reload')
 --require('importcost')
 require('dashboardrc')
 
--- Mappings
-require('map')
-
 -- NeoVim's Configuration
 require('settings')
+
+-- Prettier
+--require('format')
 
 -- Auto Start's
 require('autostarts')

@@ -148,6 +148,8 @@ alias ll="exa --long --header --icons --git -a"
 alias lg='lazygit'
 alias e='ranger'
 alias speed='speedometer -rx wlp3s2 -tx wlp3s2 -i 0.25'
+alias ide="~/Workspace/Bash/ide.sh"
+alias cleanswap="sudo swapoff -a ; sudo swapon -a;"
 
 # Funciones
 function stop_db(){
@@ -174,4 +176,9 @@ export PATH="$HOME/tools/lua-language-server/bin/Linux:$PATH"
 eval "$(zoxide init zsh)"
 
 # Bitwarden
-export BW_SESSION="Ab7A6BTZw51aOiSVAGYhgi75STeCrp4iwDeXo6xSauMlm1Drp7evthbAzcaZroBAsrXf4jwiw3PR9cLAqfEcKg=="
+#export BW_SESSION="Ab7A6BTZw51aOiSVAGYhgi75STeCrp4iwDeXo6xSauMlm1Drp7evthbAzcaZroBAsrXf4jwiw3PR9cLAqfEcKg=="
+
+
+# Load Angular CLI autocompletion.
+#source <(ng completion script)
+export LD_PRELOAD=/var/lib/snapd/snap/ppsspp-emu/11/usr/lib/x86_64-linux-gnu/dri/i915_dri.so

@@ -10,7 +10,7 @@ require('gitsigns').setup {
   numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
   linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
   word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
-  watch_index = {
+  watch_gitdir = {
     interval = 700,
     follow_files = true
   },
@@ -22,8 +22,10 @@ require('gitsigns').setup {
     delay = 1000,
   },
   current_line_blame_formatter_opts = {
+    ignore_whitespace = false,
     relative_time = false
   },
+  current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
   sign_priority = 6,
   update_debounce = 100,
   status_formatter = nil, -- Use default
@@ -36,7 +38,7 @@ require('gitsigns').setup {
     row = 0,
     col = 1
   },
-  use_internal_diff = true,  -- If vim.diff or luajit is present
+  --use_internal_diff = true,  -- If vim.diff or luajit is present
   yadm = {
     enable = false
   },

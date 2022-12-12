@@ -1,4 +1,4 @@
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local nvim_lsp = require('lspconfig')
 local protocol = require'vim.lsp.protocol'
 local util = require('lspconfig.util')
@@ -133,10 +133,12 @@ require'lspconfig'.sumneko_lua.setup {
   },
 }
 
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = {
-  'tsserver', 'vimls', 'intelephense', 'tailwindcss', 'diagnosticls', 'bashls', 'eslint', 'jsonls'
+  'tsserver', 'vimls', 'intelephense', 'diagnosticls', 'bashls', 'eslint', 'jsonls', 'pyright', 'cssls'
 }
 
 for _, lsp in ipairs(servers) do

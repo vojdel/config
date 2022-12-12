@@ -39,6 +39,8 @@ set.termguicolors = true
 set.foldmethod="syntax"
 set.foldlevelstart=1
 set.cc = '120'               -- Color column
+set.breakindent = true      -- Set virtual lines (only visible when wrap is enable)
+--set.guifont = { "FiraCode", "h12" }
 --set.statusline:append("< %L ") -- Total lines
 --window-local option
 wo.number = true		-- Number Lines
@@ -47,7 +49,7 @@ wo.wrap = true			-- Whitespace
 wo.cursorline = true		-- Highlight cursors line underneath the cursor horizontally.
 -- wo.foldenable = true
 
-
+vim.cmd('set guifont=FiraCode\\ r:h13')
 vim.cmd [[augroup Format]]
 vim.cmd [[autocmd! * <buffer>]]
 vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync(nil, 1000)]]
