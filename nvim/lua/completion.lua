@@ -10,7 +10,7 @@ local source_mapping = {
 	nvim_lua = "[Lua]",
 	cmp_tabnine = "[TN]",
 	path = "[Path]",
-	UltiSnips = "[UltiSnips]",
+	--UltiSnips = "[UltiSnips]",
 }
 
 local has_any_words_before = function()

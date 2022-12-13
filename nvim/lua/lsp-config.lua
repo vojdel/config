@@ -1,11 +1,11 @@
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local nvim_lsp = require('lspconfig')
-local protocol = require'vim.lsp.protocol'
+local protocol = require 'vim.lsp.protocol'
 local util = require('lspconfig.util')
 
 local function lsp_highlight_document(client)
   -- Set autocommands conditional on server_capabilities
-  if client.resolved_capabilities.document_highlight then
+  if client.server_capabilities.document_highlight then
     vim.api.nvim_exec(
       [[
       augroup lsp_document_highlight
@@ -13,7 +13,7 @@ local function lsp_highlight_document(client)
         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup END
-    ]],
+    ]] ,
       false
     )
   end
@@ -26,6 +26,7 @@ local on_attach = function(client, bufnr)
   --require "lsp_signature".on_attach()  -- Note: add in lsp client on-attach
 
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
   --Enable completion triggered by <c-x><c-o>
@@ -34,7 +35,7 @@ local on_attach = function(client, bufnr)
   lsp_highlight_document(client)
 
   -- Mappings.
-  local opts = { noremap=true, silent=true }
+  local opts = { noremap = true, silent = true }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -53,14 +54,15 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)  -- formatting
+  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts) -- formatting
 
-  vim.api.nvim_buf_set_keymap(0, "n", "<space>ca", "<cmd>Lspsaga code_action<cr>", {silent = true, noremap = true})
-  vim.api.nvim_buf_set_keymap(0, "x", "<space>ca", ":<c-u>Lspsaga range_code_action<cr>", {silent = true, noremap = true})
+  vim.api.nvim_buf_set_keymap(0, "n", "<space>ca", "<cmd>Lspsaga code_action<cr>", { silent = true, noremap = true })
+  vim.api.nvim_buf_set_keymap(0, "x", "<space>ca", ":<c-u>Lspsaga range_code_action<cr>",
+    { silent = true, noremap = true })
 
   require "lsp_signature".on_attach()
 
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.document_formatting then
     vim.api.nvim_command [[augroup Format]]
     vim.api.nvim_command [[autocmd! * <buffer>]]
     vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync(nil, 1000)]]
@@ -101,10 +103,10 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-require'lspconfig'.sumneko_lua.setup {
+require 'lspconfig'.sumneko_lua.setup {
   -- cmd = {sumneko_binary_path, "-E", sumneko_root_path .. "/main.lua"};
   on_attach = on_attach,
-  cmd = {"/home/vojdel/Workspace/lua-language-server/bin/Linux/lua-language-server"};
+  cmd = { "/usr/bin/lua-language-server" };
   settings = {
     Lua = {
       runtime = {
@@ -115,7 +117,7 @@ require'lspconfig'.sumneko_lua.setup {
       },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
+        globals = { 'vim' },
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
@@ -156,104 +158,104 @@ end
 
 nvim_lsp.tailwindcss.setup {
   cmd = { "tailwindcss-language-server", "--stdio" },
-    -- filetypes copied and adjusted from tailwindcss-intellisense
-    filetypes = {
-      -- html
-      'aspnetcorerazor',
-      'astro',
-      'astro-markdown',
-      'blade',
-      'django-html',
-      'edge',
-      'eelixir', -- vim ft
-      'ejs',
-      'erb',
-      'eruby', -- vim ft
-      'gohtml',
-      'haml',
-      'handlebars',
-      'hbs',
-      'html',
-      -- 'HTML (Eex)',
-      -- 'HTML (EEx)',
-      'html-eex',
-      'heex',
-      'jade',
-      'leaf',
-      'liquid',
-      'markdown',
-      'mdx',
-      'mustache',
-      'njk',
-      'nunjucks',
-      --'php',
-      'razor',
-      'slim',
-      'twig',
-      -- css
-      'css',
-      'less',
-      'postcss',
-      'sass',
-      'scss',
-      'stylus',
-      'sugarss',
-      -- js
-      --'javascript',
-      --'javascriptreact',
-      'reason',
-      'rescript',
-      --'typescript',
-      --'typescriptreact',
-      -- mixed
-      'vue',
-      'svelte',
+  -- filetypes copied and adjusted from tailwindcss-intellisense
+  filetypes = {
+    -- html
+    'aspnetcorerazor',
+    'astro',
+    'astro-markdown',
+    'blade',
+    'django-html',
+    'edge',
+    'eelixir', -- vim ft
+    'ejs',
+    'erb',
+    'eruby', -- vim ft
+    'gohtml',
+    'haml',
+    'handlebars',
+    'hbs',
+    'html',
+    -- 'HTML (Eex)',
+    -- 'HTML (EEx)',
+    'html-eex',
+    'heex',
+    'jade',
+    'leaf',
+    'liquid',
+    'markdown',
+    'mdx',
+    'mustache',
+    'njk',
+    'nunjucks',
+    --'php',
+    'razor',
+    'slim',
+    'twig',
+    -- css
+    'css',
+    'less',
+    'postcss',
+    'sass',
+    'scss',
+    'stylus',
+    'sugarss',
+    -- js
+    --'javascript',
+    --'javascriptreact',
+    'reason',
+    'rescript',
+    --'typescript',
+    --'typescriptreact',
+    -- mixed
+    'vue',
+    'svelte',
+  },
+  init_options = {
+    userLanguages = {
+      eelixir = 'html-eex',
+      eruby = 'erb',
     },
-    init_options = {
-      userLanguages = {
-        eelixir = 'html-eex',
-        eruby = 'erb',
+  },
+  settings = {
+    tailwindCSS = {
+      validate = true,
+      lint = {
+        cssConflict = 'warning',
+        invalidApply = 'error',
+        invalidScreen = 'error',
+        invalidVariant = 'error',
+        invalidConfigPath = 'error',
+        invalidTailwindDirective = 'error',
+        recommendedVariantOrder = 'warning',
+      },
+      classAttributes = {
+        'class',
+        'className',
+        'classList',
+        'ngClass',
       },
     },
-    settings = {
-      tailwindCSS = {
-        validate = true,
-        lint = {
-          cssConflict = 'warning',
-          invalidApply = 'error',
-          invalidScreen = 'error',
-          invalidVariant = 'error',
-          invalidConfigPath = 'error',
-          invalidTailwindDirective = 'error',
-          recommendedVariantOrder = 'warning',
-        },
-        classAttributes = {
-          'class',
-          'className',
-          'classList',
-          'ngClass',
-        },
-      },
-    },
-    on_new_config = function(new_config)
-      if not new_config.settings then
-        new_config.settings = {}
-      end
-      if not new_config.settings.editor then
-        new_config.settings.editor = {}
-      end
-      if not new_config.settings.editor.tabSize then
-        -- set tab size for hover
-        new_config.settings.editor.tabSize = vim.lsp.util.get_effective_tabstop()
-      end
-    end,
-    root_dir = function(fname)
-      return util.root_pattern('tailwind.config.js', 'tailwind.config.ts')(fname)
+  },
+  on_new_config = function(new_config)
+    if not new_config.settings then
+      new_config.settings = {}
+    end
+    if not new_config.settings.editor then
+      new_config.settings.editor = {}
+    end
+    if not new_config.settings.editor.tabSize then
+      -- set tab size for hover
+      new_config.settings.editor.tabSize = vim.lsp.util.get_effective_tabstop()
+    end
+  end,
+  root_dir = function(fname)
+    return util.root_pattern('tailwind.config.js', 'tailwind.config.ts')(fname)
         or util.root_pattern('postcss.config.js', 'postcss.config.ts')(fname)
         or util.find_package_json_ancestor(fname)
         or util.find_node_modules_ancestor(fname)
         or util.find_git_ancestor(fname)
-    end,
+  end,
 }
 
 local signs = {
@@ -292,13 +294,13 @@ vim.diagnostic.config(config)
 -- icon
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
-    underline = true,
-    -- This sets the spacing and the prefix, obviously.
-    virtual_text = {
-      spacing = 4,
-      prefix = ''
-    }
+  underline = true,
+  -- This sets the spacing and the prefix, obviously.
+  virtual_text = {
+    spacing = 4,
+    prefix = ''
   }
+}
 )
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {

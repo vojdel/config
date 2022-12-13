@@ -2,7 +2,7 @@
 #source ~/Workspace/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # ZSH AutoComplete
-source ~/Workspace/fzf-tab/fzf-tab.plugin.zsh
+source ~/.oh-my-zsh/custom/plugins/fzf-tab/fzf-tab.plugin.zsh
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -14,7 +14,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/vojdel/.oh-my-zsh"
+export ZSH="/home/daisho/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -85,7 +85,7 @@ plugins=(
 	github
     gitignore
 	composer
-    clipboard
+    #clipboard
 	node
 	npm
 	nvm
@@ -160,12 +160,7 @@ function stop_db(){
 
 alias alert_helper='history|tail -n1|sed -e "s/^s*[0-9]+s*//" -e "s/;s*alert$//"'
 alias alert='notify-send -i /usr/share/icons/gnome/32x32/apps/gnome-terminal.png "[$?] $(alert_helper)"'
-alias glog='git log --graph --abbrev-commit --decorate --date=relative --all'
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-POWERLEVEL9K_LEGACY_ICON_SPACING=true
 export EDITOR='nvim'
 
 alias luamake=/home/vojdel/Workspace/lua-language-server/3rd/luamake/luamake
@@ -181,4 +176,5 @@ eval "$(zoxide init zsh)"
 
 # Load Angular CLI autocompletion.
 #source <(ng completion script)
-export LD_PRELOAD=/var/lib/snapd/snap/ppsspp-emu/11/usr/lib/x86_64-linux-gnu/dri/i915_dri.so
+#export LD_PRELOAD=/var/lib/snapd/snap/ppsspp-emu/11/usr/lib/x86_64-linux-gnu/dri/i915_dri.so
+source /home/daisho/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
