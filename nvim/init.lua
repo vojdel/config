@@ -26,6 +26,9 @@ require('colorizerrc')
 require('reload')
 --require('importcost')
 require('dashboardrc')
+require('holagram-conf')
+require('wilder-conf')
+require("notify")("Hello, Welcome to Space Work!!", "info")
 
 -- NeoVim's Configuration
 require('settings')

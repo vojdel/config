@@ -83,13 +83,16 @@ key.nmap('<leader>ht', ':Gitsigns toggle_current_line_blame<CR>')
 
 -- telescope's Config
 key.nmap('ff', '<cmd>Telescope find_files<cr>')
+key.nmap('fm', '<cmd>Telescope media_files<cr>')
 key.nmap('fr', '<cmd>Telescope registers<cr>')
 key.nmap('fl', '<cmd>Telescope current_buffer_fuzzy_find<cr>')
 key.nmap('fg', '<cmd>Telescope live_grep<cr>')
 key.nmap('fb', '<cmd>Telescope buffers<cr>')
 key.nmap('fn', '<cmd>Telescope help_tags<cr>')
 key.nmap('fc', '<cmd>Telescope keymaps<cr>')
-key.nmap('<leader>ff', "<cmd>lua require'telescope.builtin'.find_files({find_command={'fd', vim.fn.expand('<cword>')}})<CR>")
+key.nmap('<leader>ff',
+  "<cmd>lua require'telescope.builtin'.find_files({find_command={'fd', vim.fn.expand('<cword>')}})<CR>")
+key.nmap('<leader>fm', "<cmd>lua require'telescope'.extensions.media_files.media_files()<cr>")
 key.nmap('<leader>fg', "<cmd>lua require'telescope.builtin'.grep_string()<CR>")
 key.nmap('<leader>gc', "<cmd>lua require'telescope.builtin'.git_branches()<cr>")
 key.nmap('<leader>gl', "<cmd>lua require'telescope.builtin'.git_commits()<cr>")
@@ -123,6 +126,11 @@ key.nmap("gR", "<cmd>Trouble lsp_references<cr>")
 key.nmap('<leader>h', ':diffget LOCAL<CR>')
 key.nmap('<leader>j', ':diffget BASE<CR>')
 key.nmap('<leader>k', ':diffget REMOTE<CR>')
+
+-- LazyGit
+key.nmap('<leader>lg', ':LazyGit<CR>')
+key.nmap('<leader>lgf', ':LazyGitFilter<CR>')
+key.nmap('<leader>lgc', ':LazyGitFilterCurrentFile<CR>')
 
 -- Terminals
 key.nmap('tv', ':botright vnew <Bar> :terminal<CR>')

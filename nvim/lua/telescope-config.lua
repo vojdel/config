@@ -1,8 +1,17 @@
 local actions = require('telescope.actions')
-require('telescope').setup{
+require('telescope').load_extension('media_files')
+require('telescope').load_extension('lazygit')
+require('telescope').setup {
+  media_files = {
+    -- filetypes whitelist
+    -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+    filetypes = { "png", "webp", "jpg", "jpeg", "mp4", "webm", "pdf" },
+    find_cmd = "rg" -- find command (defaults to `fd`)
+  },
+  preview = true,
   defaults = {
-    prompt_prefix= "🔍 ",
-  --prompt_prefix = " ",
+    prompt_prefix = "🔍 ",
+    --prompt_prefix = " ",
     selection_caret = "  ",
     path_display = { "smart" },
     mappings = {
@@ -22,16 +31,16 @@ require('telescope').setup{
 
         ["<PageUp>"] = actions.results_scrolling_up,
         ["<PageDown>"] = actions.results_scrolling_down,
-         ["?"] = actions.which_key,
+        ["?"] = actions.which_key,
       }
     },
     file_ignore_patterns = {
-          'node_modules',
-          '.git',
-          'plugged',
-          'pack',
-          'lib',
-          'vendor'
-        }
-  }
+      'node_modules',
+      '.git',
+      'plugged',
+      'pack',
+      'lib',
+      'vendor'
+    }
+  },
 }

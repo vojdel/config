@@ -50,9 +50,6 @@ Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})  --  We recommen
 Plug 'neovim/nvim-lspconfig'
 --Plug 'glepnir/lspsaga.nvim'
 Plug 'tami5/lspsaga.nvim'
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
 Plug 'akinsho/nvim-bufferline.lua' --  Buffer Line with Lua
 Plug 'lukas-reineke/indent-blankline.nvim' --  Ident Line
 Plug 'kyazdani42/nvim-tree.lua' --  File Explorer
@@ -63,6 +60,12 @@ Plug 'onsails/lspkind-nvim'
 Plug 'ray-x/lsp_signature.nvim'
 --Plug 'folke/which-key.nvim'
 Plug 'famiu/nvim-reload'
+
+-- Telescope
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-media-files.nvim'
 
 -- Completion
 Plug 'neovim/nvim-lspconfig'
@@ -89,5 +92,17 @@ Plug 'mattn/emmet-vim'
 
 -- Prettier
 Plug 'sbdchd/neoformat'
+
+-- Hologram
+Plug 'edluffy/hologram.nvim'
+
+Plug 'gelguy/wilder.nvim'
+
+-- Notify
+Plug 'rcarriga/nvim-notify'
+
+-- LazyGit
+Plug 'kdheepak/lazygit.nvim'
+
 --  Initialize plugin system
 vim.call('plug#end')

@@ -147,7 +147,7 @@ alias ll="exa --long --header --icons --git -a"
 #alias composer="/usr/local/bin/composer"
 alias lg='lazygit'
 alias e='ranger'
-alias speed='speedometer -rx wlp3s2 -tx wlp3s2 -i 0.25'
+alias speed='speedometer -rx wlp2s0 -tx wlp2s0 -i 0.25'
 alias ide="~/Workspace/Bash/ide.sh"
 alias cleanswap="sudo swapoff -a ; sudo swapon -a;"
 
@@ -178,3 +178,11 @@ eval "$(zoxide init zsh)"
 #source <(ng completion script)
 #export LD_PRELOAD=/var/lib/snapd/snap/ppsspp-emu/11/usr/lib/x86_64-linux-gnu/dri/i915_dri.so
 source /home/daisho/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Ranger
+export VISUAL=nvim
+export PAGER=less
+if [ -n "$RANGER_LEVEL" ]; then export PS1="[ranger]$PS1"; fi
+
+# Autostart
+neofetch
