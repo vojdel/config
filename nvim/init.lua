@@ -1,11 +1,17 @@
 -- Plugins
 require('plug')
 
+-- Notify
+local notify = require('notification')
+
 -- Mappings
 require('map')
 
--- Configurations Plugins
+-- Theme - Tokyo Night
 require('tokyo-night')
+
+-- Configurations Plugins
+notify.msg("Hello, Welcome to Space Work!!", "info")
 require('troublerc')
 require('lsp-config')
 require('nvimtree')
@@ -26,9 +32,9 @@ require('colorizerrc')
 require('reload')
 --require('importcost')
 require('dashboardrc')
-require('holagram-conf')
+--require('holagram-conf')
 require('wilder-conf')
-require("notify")("Hello, Welcome to Space Work!!", "info")
+require('impatient')
 
 -- NeoVim's Configuration
 require('settings')

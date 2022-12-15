@@ -135,3 +135,7 @@ key.nmap('<leader>lgc', ':LazyGitFilterCurrentFile<CR>')
 -- Terminals
 key.nmap('tv', ':botright vnew <Bar> :terminal<CR>')
 key.nmap('th', ':botright new <Bar> :terminal<CR>')
+
+-- key's i not have
+key.imap('<A-,>', '<')
+key.imap('<A-.>', '>')

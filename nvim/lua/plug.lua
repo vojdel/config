@@ -104,5 +104,8 @@ Plug 'rcarriga/nvim-notify'
 -- LazyGit
 Plug 'kdheepak/lazygit.nvim'
 
+-- Performan
+Plug 'lewis6991/impatient.nvim'
+
 --  Initialize plugin system
 vim.call('plug#end')

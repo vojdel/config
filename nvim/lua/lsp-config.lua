@@ -2,6 +2,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 local nvim_lsp = require('lspconfig')
 local protocol = require 'vim.lsp.protocol'
 local util = require('lspconfig.util')
+local notify = require('notification')
 
 local function lsp_highlight_document(client)
   -- Set autocommands conditional on server_capabilities
@@ -54,7 +55,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts) -- formatting
+  buf_set_keymap('n', '<space>F', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', opts) -- formatting
 
   vim.api.nvim_buf_set_keymap(0, "n", "<space>ca", "<cmd>Lspsaga code_action<cr>", { silent = true, noremap = true })
   vim.api.nvim_buf_set_keymap(0, "x", "<space>ca", ":<c-u>Lspsaga range_code_action<cr>",
@@ -125,7 +126,7 @@ require 'lspconfig'.sumneko_lua.setup {
           vim.api.nvim_get_runtime_file("", true),
           [vim.fn.expand("$VIMRUNTIME/lua")] = true,
           [vim.fn.stdpath("config") .. "/lua"] = true,
-        }
+        },
       },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {
@@ -133,6 +134,7 @@ require 'lspconfig'.sumneko_lua.setup {
       },
     },
   },
+  --notify.msg("sumneko_lua", "info")
 }
 
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -152,9 +154,18 @@ for _, lsp in ipairs(servers) do
     },
     settings = {
       format = { enable = true }
-    }
+    },
+    --notify.msg(lsp, "info")
   }
 end
+
+nvim_lsp.eslint.setup {
+  codeAction = {
+    rulesCustomizations = {
+      ["space-in-brackets"] = { true, "never" },
+    },
+  }
+}
 
 nvim_lsp.tailwindcss.setup {
   cmd = { "tailwindcss-language-server", "--stdio" },
@@ -271,7 +282,8 @@ end
 
 local config = {
   -- disable virtual text
-  virtual_text = false,
+  --virtual_text = false,
+  virtual_text = true,
   -- show signs
   signs = {
     active = signs,
@@ -281,11 +293,11 @@ local config = {
   severity_sort = true,
   float = {
     focusable = false,
-    style = "minimal",
+    --style = "minimal",
     border = "rounded",
     source = "always",
     header = "",
-    prefix = "",
+    prefix = "🧐 ",
   },
 }
 
@@ -310,3 +322,6 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
   border = "rounded",
 })
+
+notify.msg("loaded modules", "info")
+notify.msg("loaded modules", "info")
