@@ -40,7 +40,7 @@ require('impatient')
 require('settings')
 
 -- Prettier
---require('format')
+require('format')
 
 -- Auto Start's
 require('autostarts')

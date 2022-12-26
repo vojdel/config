@@ -36,8 +36,8 @@ set.splitright = true -- Split Windows always right
 set.splitbelow = true -- Split Windows always below
 set.hidden = true -- Allow hidden buffer
 set.termguicolors = true
-set.foldmethod = "syntax"
-set.foldlevelstart = 1
+--set.foldmethod = "syntax"
+--set.foldlevelstart = 1
 set.cc = '120' -- Color column
 set.breakindent = true -- Set virtual lines (only visible when wrap is enable)
 --set.guifont = { "FiraCode", "h12" }
@@ -50,12 +50,15 @@ wo.cursorline = true -- Highlight cursors line underneath the cursor horizontall
 -- wo.foldenable = true
 
 vim.cmd('set guifont=FiraCode\\ r:h13')
-vim.cmd [[augroup Format]]
-vim.cmd [[autocmd! * <buffer>]]
-vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ async = true })]]
-vim.cmd [[augroup END]]
+--vim.cmd [[augroup Format]]
+--vim.cmd [[autocmd! * <buffer>]]
+--vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ async = true })]]
+--vim.cmd [[augroup END]]
 
 -- You will likely want to reduce updatetime which affects CursorHold
 -- note: this setting is global and should be set only once
 vim.o.updatetime = 250
 vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+
+vim.cmd [[ autocmd FileType typescript let g:jsdoc_formatter='tsdoc' ]]
+--vim.cmd [[autocmd let g:jsdoc_formatter='tsdoc')]]

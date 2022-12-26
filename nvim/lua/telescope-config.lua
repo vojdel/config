@@ -8,7 +8,7 @@ require('telescope').setup {
     filetypes = { "png", "webp", "jpg", "jpeg", "mp4", "webm", "pdf" },
     find_cmd = "rg" -- find command (defaults to `fd`)
   },
-  preview = true,
+  --preview = true,
   defaults = {
     prompt_prefix = "🔍 ",
     --prompt_prefix = " ",

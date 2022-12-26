@@ -25,7 +25,8 @@ key.nmap("<A-9>", ":BufferLineGoToBuffer 9<CR>")
 -- Save, Quit, Esc & Esc terminal
 key.nmap('<leader>a', ':w<cr>')
 key.nmap('<leader>A', ':wall<cr>')
-key.nmap('<leader>Q', ':q!<cr>')
+key.nmap('<C-s>', ':w!<cr>')
+key.nmap('<C-q>', ':q!<cr>')
 key.imap('jj', '<Esc>')
 
 -- Copy line & copy end line
@@ -59,6 +60,10 @@ key.nmap('<leader>kp', key.get_relative_fname())
 -- Resize Windows
 key.nmap('<leader>>', '10<c-w>>')
 key.nmap('<leader><', '10<c-w><')
+key.nmap('<C-w><left>', '<C-w><')
+key.nmap('<C-w><right>', '<C-w>>')
+key.nmap('<C-w><up>', '<C-w>+')
+key.nmap('<C-w><down>', '<C-w>-')
 
 -- Faster Scrolling
 key.nmap("<C-e>", "15<C-e>")
@@ -136,6 +141,16 @@ key.nmap('<leader>lgc', ':LazyGitFilterCurrentFile<CR>')
 key.nmap('tv', ':botright vnew <Bar> :terminal<CR>')
 key.nmap('th', ':botright new <Bar> :terminal<CR>')
 
--- key's i not have
-key.imap('<A-,>', '<')
-key.imap('<A-.>', '>')
+-- new tab
+key.nmap('ss', ':split<Return><C-w>w')
+key.nmap('sv', ':vsplit<Return><C-w>w')
+
+-- Select all
+key.nmap('<C-a>', 'gg<S-v>G')
+
+-- Increment/Decrement
+key.nmap('+', '<C-a>')
+key.nmap('-', '<C-x>')
+
+-- Format
+key.nmap('<leader>f', ':Neoformat prettier<CR>')

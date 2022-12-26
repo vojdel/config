@@ -36,9 +36,9 @@ Plug 'editorconfig/editorconfig-vim'
 
 --  Git
 if vim.fn.has('nvim') or vim.fn.has('patch-8.0.902') then
-    Plug 'mhinz/vim-signify'
+  Plug 'mhinz/vim-signify'
 else
-    Plug('mhinz/vim-signify', { branch = 'legacy' })
+  Plug('mhinz/vim-signify', { branch = 'legacy' })
 end
 Plug 'tpope/vim-fugitive'
 --Plug 'airblade/vim-gitgutter'
@@ -46,7 +46,7 @@ Plug 'lewis6991/gitsigns.nvim'
 
 --  Lua
 Plug 'glepnir/lspsaga.nvim'
-Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})  --  We recommend updating the parsers on update
+Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' }) --  We recommend updating the parsers on update
 Plug 'neovim/nvim-lspconfig'
 --Plug 'glepnir/lspsaga.nvim'
 Plug 'tami5/lspsaga.nvim'
@@ -92,6 +92,7 @@ Plug 'mattn/emmet-vim'
 
 -- Prettier
 Plug 'sbdchd/neoformat'
+--Plug 'mhartington/formatter.nvim'
 
 -- Hologram
 Plug 'edluffy/hologram.nvim'
@@ -107,5 +108,23 @@ Plug 'kdheepak/lazygit.nvim'
 -- Performan
 Plug 'lewis6991/impatient.nvim'
 
---  Initialize plugin system
+-- JsDoc
+Plug('heavenshell/vim-jsdoc', {
+  ['for'] = { 'javascript', 'javascript.jsx', 'typescript' },
+  ['do'] = 'make install'
+})
+
+-- Handlebars
+Plug 'joukevandermaas/vim-ember-hbs'
+
+-- Markdown Preview
+-- If you have nodejs and yarn
+Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && yarn install' })
+-- Other way
+--Plug('iamcco/markdown-preview.nvim', {
+  --['do'] = '-> mkdp#util#install()',
+  --['for'] = { 'markdown', 'vim-plug' },
+--})
+
+-- Initialize plugin system
 vim.call('plug#end')

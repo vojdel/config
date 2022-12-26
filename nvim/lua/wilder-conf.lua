@@ -21,4 +21,4 @@ wilder.set_option('renderer', wilder.popupmenu_renderer({
   }),
   pumblend = 20,
 }))
-wilder.set_option('use_python_remote_plugin', 0)
+wilder.set_option('use_python_remote_plugin', 1)

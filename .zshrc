@@ -150,6 +150,7 @@ alias e='ranger'
 alias speed='speedometer -rx wlp2s0 -tx wlp2s0 -i 0.25'
 alias ide="~/Workspace/Bash/ide.sh"
 alias cleanswap="sudo swapoff -a ; sudo swapon -a;"
+alias icat="kitty +kitten icat"
 
 # Funciones
 function stop_db(){
@@ -186,3 +187,4 @@ if [ -n "$RANGER_LEVEL" ]; then export PS1="[ranger]$PS1"; fi
 
 # Autostart
 neofetch
+xmodmap ~/.Xmodmap
